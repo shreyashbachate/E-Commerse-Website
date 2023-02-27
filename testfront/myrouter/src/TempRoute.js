@@ -21,7 +21,7 @@ export default function TempRoute() {
                     <Route  path="/" element={<App />} />
                     <Route path="/user" element={<User />} />
                     <Route path="/visit" element={<Visit />} />
-                    <Route component={notfound} />
+                    <Route element={notfound} />
                 </Routes>
 
             </Router>
