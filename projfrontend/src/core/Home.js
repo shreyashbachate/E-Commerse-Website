@@ -5,7 +5,7 @@ import Base from './Base';
 
 export default function Home() {
     return (
-        <Base title='Home Page'>
+        <Base title='Home Page' description='Welcome to the T-Shirt Store'>
             <h1 className='text-white'>
                 <div class="row">
                     <div class="col-4">
