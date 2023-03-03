@@ -1,27 +1,19 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Route, Navigate } from 'react-router-dom'
 import { isAuthenticated } from './index'
 
 
-const PrivateRoutes = ({ component: Component, ...rest }) => {
+const PrivateRoutes = ({ children, ...rest }) => {
     return (
-        <Route
-            {...rest}
-            render={props =>
-
-                isAuthenticated() ? (
-                    <Component {...props} />
+        <div>
+            {isAuthenticated() ? (
+                children
+            )
+                : (
+                    <Navigate to="/signin" />
                 )
-                    : (
-                        <Navigate
-                            to={{
-                                pathname: "/signin",
-                                state: { from: props.location }
-                            }}
-                        />
-                    )
             }
-        />
+        </div>
     )
 }
 
