@@ -37,7 +37,7 @@ const Signin = () => {
                     })
                 }
             })
-            .catch(console.log("Sign In Failed"))
+            .catch(console.log("Sign in failed"))
     }
 
 
@@ -68,10 +68,10 @@ const Signin = () => {
     const performRedirect = () => {
         if (didRedirect) {
             if (user && user.role === 1) {
-                return <p>redirect to admin</p>
+                return <Navigate to="/admin/dashboard" />
             }
             else {
-                return <p>redirect to user dashboard</p>
+                return <Navigate to="/user/dashboard" />
             }
         }
         if (isAuthenticated()) {

@@ -28,10 +28,11 @@ export const signin = user => {
 
     })
         .then(response => {
+            console.log(response)
             return response.json();
         })
         .catch(err => {
-            console.log(err);
+            console.log("rhr"+err);
         })
 }
 

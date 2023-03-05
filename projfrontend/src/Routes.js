@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes as Switch, Link, Route } from "react-router-dom"
+import AddCategory from './admin/AddCategory'
 import AdminRoutes from './auth/helper/AdminRoutes'
 import PrivateRoutes from './auth/helper/PrivateRoutes'
 import Home from './core/Home'
@@ -28,6 +29,12 @@ export default function Routes() {
                     <Route path="/admin/dashboard" element={
                         <AdminRoutes>
                             <AdminDashBoard />
+                        </AdminRoutes>
+                    }
+                    />
+                    <Route path="/admin/create/category" element={
+                        <AdminRoutes>
+                            <AddCategory />
                         </AdminRoutes>
                     }
                     />
