@@ -77,9 +77,9 @@ exports.getProduct =(req,res) => {
 
 //middleware
 exports.photo = (req,res,next) => {
-    if(req.profile.photo){
-        res.set("Content-Type", req.profile.photo.contentType)
-        return res.send(req.profile.photo.data)
+    if(req.product.photo.data){
+        res.set("Content-Type", req.product.photo.contentType)
+        return res.send(req.product.photo.data)
     }
     next()
 }

@@ -8,6 +8,7 @@ import UpdateCategories from './admin/UpdateCategories'
 import UpdateProduct from './admin/UpdateProduct'
 import AdminRoutes from './auth/helper/AdminRoutes'
 import PrivateRoutes from './auth/helper/PrivateRoutes'
+import Cart from './core/Cart'
 import Home from './core/Home'
 import AdminDashBoard from './user/AdminDashBoard'
 import Signin from './user/Signin'
@@ -23,6 +24,7 @@ export default function Routes() {
                     <Route exact path="/" element={< Home />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/signin" element={<Signin />} />
+                    <Route path="/cart" element={<Cart />} />
 
                     <Route path="/user/dashboard" element={
                         <PrivateRoutes>
@@ -30,7 +32,7 @@ export default function Routes() {
                         </PrivateRoutes>
                     }
                     />
-                    
+
                     <Route path="/admin/dashboard" element={
                         <AdminRoutes>
                             <AdminDashBoard />
@@ -61,13 +63,13 @@ export default function Routes() {
                         </AdminRoutes>
                     }
                     />
-                     <Route path="/admin/product/update/:productID" element={
+                    <Route path="/admin/product/update/:productID" element={
                         <AdminRoutes>
                             <UpdateProduct />
                         </AdminRoutes>
                     }
                     />
-                     <Route path="/admin/category/update/:categoryID" element={
+                    <Route path="/admin/category/update/:categoryID" element={
                         <AdminRoutes>
                             <UpdateCategories />
                         </AdminRoutes>
