@@ -12,16 +12,16 @@ exports.getCategoryById = (req, res, next, id) => {
   });
 };
 
-exports.createCategory = (req,res) => {
-    const category = new Category(req.body);
-    category.save((err,category) => {
-        if(err){
-            return res.status(400).json({
-                error: "NOT able to save category in DB"
-            })
-        }
-        res.json({category});
-    })
+exports.createCategory = (req, res) => {
+  const category = new Category(req.body);
+  category.save((err, category) => {
+    if (err) {
+      return res.status(400).json({
+        error: "NOT able to save category in DB"
+      })
+    }
+    res.json({ category });
+  })
 }
 
 exports.getCategory = (req, res) => {
@@ -30,33 +30,37 @@ exports.getCategory = (req, res) => {
 
 exports.getAllCategory = (req, res) => {
   Category.find().exec((err, category) => {
-    if(err) {
+    if (err) {
       return res.status(400).json({
         error: "No category found"
       });
     }
     res.json(category);
-})
-}
-
-exports.updateCategory = (req, res) => {
-  const category = req.category;
-  category.name = req.body.name;
-
-  category.save((err,updatedCategory) => {
-    if(err){
-      return res.status(400).json({
-        error: "Failed to update category"
-    })
-  }
-  res.json(updatedCategory)
   })
 }
 
-exports.removeCategory =(req, res) =>{
+exports.updateCategory = (req, res) => {
+
   const category = req.category;
-  category.remove((err,removedCategory) => {
-    if(err){
+
+  category.name = req.body.updatedCategory;
+
+  category.save((err, updatedCategory) => {
+    console.log(err)
+    if (err) {
+      return res.status(400).json({
+        error: "Failed to update category"
+      })
+    }
+
+    res.json(updatedCategory)
+  })
+}
+
+exports.removeCategory = (req, res) => {
+  const category = req.category;
+  category.remove((err, removedCategory) => {
+    if (err) {
       return res.status(400).json({
         error: "Failed to remove category"
       })
@@ -64,5 +68,5 @@ exports.removeCategory =(req, res) =>{
     res.json({
       message: `${removedCategory} category removed successfully`
     })
-})
+  })
 }

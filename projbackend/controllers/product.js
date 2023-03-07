@@ -71,8 +71,8 @@ exports.createProduct = (req, res) => {
 }
 
 exports.getProduct =(req,res) => {
-    req.product.photo = undefined;
-    return res.json(req.profile)
+    req.product.photo = undefined;  
+    return res.json(req.product)
 } 
 
 //middleware
@@ -90,7 +90,7 @@ exports.deleteProduct = (req,res) => {
 
     let product = req.product;
 
-    product.remove((err,deletedproduct) => {
+    product.remove((err,deletedProduct) => {
         if(err){
             return res.status(400).json({
                 error: "Deleting tshirt in DB failed"

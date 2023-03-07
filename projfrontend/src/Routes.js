@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes as Switch, Link, Route } from "react-ro
 import AddCategory from './admin/AddCategory'
 import AddProduct from './admin/AddProduct'
 import ManageCategory from './admin/ManageCategory'
+import ManageProducts from './admin/ManageProducts'
+import UpdateCategories from './admin/UpdateCategories'
+import UpdateProduct from './admin/UpdateProduct'
 import AdminRoutes from './auth/helper/AdminRoutes'
 import PrivateRoutes from './auth/helper/PrivateRoutes'
 import Home from './core/Home'
@@ -49,6 +52,24 @@ export default function Routes() {
                     <Route path="/admin/create/product" element={
                         <AdminRoutes>
                             <AddProduct />
+                        </AdminRoutes>
+                    }
+                    />
+                    <Route path="/admin/products" element={
+                        <AdminRoutes>
+                            <ManageProducts />
+                        </AdminRoutes>
+                    }
+                    />
+                     <Route path="/admin/product/update/:productID" element={
+                        <AdminRoutes>
+                            <UpdateProduct />
+                        </AdminRoutes>
+                    }
+                    />
+                     <Route path="/admin/category/update/:categoryID" element={
+                        <AdminRoutes>
+                            <UpdateCategories />
                         </AdminRoutes>
                     }
                     />
