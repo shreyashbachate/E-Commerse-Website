@@ -2,11 +2,11 @@ const User = require("../models/user");
 const Order = require("../models/order")
 
 
-exports.getUserById = (req,res,next,id) => {
+exports.getUserById = (req, res, next, id) => {
 
-    User.findById(id).exec((err,user) => {
+    User.findById(id).exec((err, user) => {
 
-        if(err || !user){
+        if (err || !user) {
 
             return res.status(400).json({
                 error: "No user found in DB"
@@ -20,7 +20,7 @@ exports.getUserById = (req,res,next,id) => {
 
 }
 
-exports.getUser = (req,res) => {
+exports.getUser = (req, res) => {
 
     req.profile.salt = undefined;
     req.profile.encry_password = undefined;
@@ -30,19 +30,19 @@ exports.getUser = (req,res) => {
     return res.json(req.profile);
 }
 
-exports.updateUser = (req,res) => {
+exports.updateUser = (req, res) => {
 
     User.findByIdAndUpdate(
-        {_id:req.profile._id},
-        {$set : req.body},
-        {new: true , useFindAndModify: false},
-        (err,user) => {
-            if(err){
+        { _id: req.profile._id },
+        { $set: req.body },
+        { new: true, useFindAndModify: false },
+        (err, user) => {
+            if (err) {
                 return res.status(400).json({
                     error: "You are not authorized to update this user"
                 })
             }
-            
+
             user.salt = undefined;
             user.encry_password = undefined;
             user.createdAt = undefined;
@@ -55,55 +55,58 @@ exports.updateUser = (req,res) => {
 
 }
 
-exports.userPurchaseList = (req,res) => {
+exports.userPurchaseList = (req, res) => {
 
-    Order.find({user: req.profile._id})
-    .populate("user" , "_id name")
-    .exec((err,order) => {
+    Order.find({ user: req.profile._id })
+        .populate("user", "_id name")
+        .exec((err, order) => {
 
-        if(err){
-            return res.status(400).json({
-                error: "No order in this account"
-            })
-        }
+            if (err) {
+                return res.status(400).json({
+                    error: "No order in this account"
+                })
+            }
 
-        return res.json(order);
+            return res.json(order);
 
-    })
+        })
 
 }
 
-exports.pushOrderInPurchaseList = (req,res,next) => {
+exports.pushOrderInPurchaseList = (req, res, next) => {
 
-    let purchases = []
+    // console.log(req.body);
 
-    req.body.order.products.foreach(product =>{
-        purchases.push({
+    req.body.order.products.forEach(product => {
+
+        const purchases = {
             _id: product._id,
             name: product.name,
             description: product.description,
             category: product.category,
             quantity: product.quantity,
             amount: req.body.order.amount,
-            transaction_id: req.body.order.transaction_id 
-        })
+            transaction_id: req.body.order.transaction_id
+        }
+
+        User.findByIdAndUpdate(
+            { _id: product._id },
+            { $push: { purchases: purchases } },
+            { new: true },
+            (err, purchases) => {
+                if (err) {
+                    return res.status(400).json({
+                        error: "Unable to save purchase list"
+                    })
+                }
+                next()
+            }
+        )
     })
 
     //store this in DB
 
-    User.findByIdAndUpdate(
-        {_id: req},
-        {$push: {purchases:purchases}},
-        {new: true},
-        (err,purchases) => {
-            if(err){
-                return res.status(400).json({
-                    error: "Unable to save purchase list"
-                })
-            }
-            next()
-        }
-        )
+
 
 }
 
