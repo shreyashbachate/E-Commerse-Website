@@ -17,6 +17,7 @@ export default function Card({
     const cardPrice = product ? product.price : "5$ Default"
 
     const [redirect, setRedirect] = useState(false)
+    // eslint-disable-next-line no-unused-vars
     const [count, setCount] = useState(product.count)
 
     const addtoCart = () => {

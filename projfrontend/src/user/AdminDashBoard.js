@@ -6,7 +6,7 @@ import Base from '../core/Base'
 
 export default function AdminDashBoard() {
 
-    const { user: { name, email, role } } = isAuthenticated()
+    const { user: { name, email } } = isAuthenticated()
 
     const adminLeftSide = () => {
         return (

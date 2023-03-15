@@ -29,6 +29,7 @@ export default function UpdateProduct() {
         formData: ""
     })
 
+    // eslint-disable-next-line no-unused-vars
     const { name, description, price, stock, photo, categories, category, loading, error, createdProduct, getaRedirect, formData } = values
 
     const preload = (productID) => {
@@ -67,6 +68,7 @@ export default function UpdateProduct() {
 
     useEffect(() => {
         preload(window.location.pathname.split("/")[4])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 

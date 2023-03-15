@@ -39,6 +39,7 @@ export default function UpdateCategories() {
 
     useEffect(() => {
         preload(categoryID)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 

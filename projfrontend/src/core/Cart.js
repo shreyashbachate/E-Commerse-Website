@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { API } from '../backend';
 import "../styles.css"
 import Base from './Base';
 import Card from './Card';
@@ -37,6 +36,7 @@ export default function Cart() {
         )
     }
 
+    // eslint-disable-next-line no-unused-vars
     const loadCheckout = () => {
         return (
             <div>

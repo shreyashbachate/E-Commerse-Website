@@ -1,4 +1,3 @@
-import { logDOM } from '@testing-library/react'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { isAuthenticated } from '../auth/helper'
@@ -27,6 +26,7 @@ export default function AddProduct() {
         formData: ""
     })
 
+    // eslint-disable-next-line no-unused-vars
     const { name, description, price, stock, photo, categories, category, loading, error, createdProduct, getaRedirect, formData } = values
 
     const preload = () => {
@@ -44,6 +44,7 @@ export default function AddProduct() {
 
     useEffect(() => {
         preload()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 

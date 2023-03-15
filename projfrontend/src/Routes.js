@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes as Switch, Link, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes as Switch, Route } from "react-router-dom"
 import AddCategory from './admin/AddCategory'
 import AddProduct from './admin/AddProduct'
 import ManageCategory from './admin/ManageCategory'

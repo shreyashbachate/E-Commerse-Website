@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import DropIn from 'braintree-web-drop-in-react'
-import { Link } from 'react-router-dom'
 import { isAuthenticated } from '../auth/helper'
-import { cartEmpty, loadCart } from './helper/CardHelper'
+import { cartEmpty } from './helper/CardHelper'
 import { createOrder } from './helper/OrderHelper'
 import { getMeToken, processPayment } from './helper/PaymentHelper'
 
@@ -38,6 +37,7 @@ export default function PaymentPaypal({ products, setReload = f => f, reload = u
 
     useEffect(() => {
         getToken(userID, token)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
@@ -109,6 +109,7 @@ export default function PaymentPaypal({ products, setReload = f => f, reload = u
         let nonce;
 
         console.log(info);
+        // eslint-disable-next-line no-unused-vars
         let getNonce = info.instance
             .requestPaymentMethod()
             .then((data) => {
